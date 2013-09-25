@@ -27,8 +27,8 @@ class ItemCollection {
 			$itemData = curl_exec($this->curl); 
 			curl_close($this->curl);
 			
-			// Need an item factory - either outputs a weapon or armour.
-			$item = null;
+			// Need an item factory - either outputs a weapon or armour. Maybe something else?
+			$item = new Item();
 			if (isset($itemdata["weaponInfo"])) {
 				$item = new Weapon();
 			}

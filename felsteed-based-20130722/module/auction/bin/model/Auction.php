@@ -5,7 +5,11 @@ class Auction {
 
 	private $data;
 
-	function setData($data) {$this->data = $data;}
+	function load($data) {
+		$this->data = $data;
+		// The item will need to be fetched here.
+		$this->item = &ItemCollection::fetch($data['item']);
+	}
 }
 
 ?>

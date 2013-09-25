@@ -1,6 +1,7 @@
 <?php
 
 require_once("ItemCollection.php");
+require_once("Auction.php");
 
 class AuctionCollection {
 	private $rawData;
@@ -25,13 +26,23 @@ class AuctionCollection {
 		$this->rawData = curl_exec($this->curl); 
 		curl_close($this->curl);
 	}
-	function loadRaw() {
-		$this->rawData = file_get_contents(dirname(__FILE__) ."/../../data/blades-edge-auctions.json");
+	function loadAuctions() {
+		$rawData = file_get_contents(dirname(__FILE__) ."/../../data/blades-edge-auctions.json");
+		$data = JSON_decode($rawData);
+		foreach($data["alliance"]["auctions"] as $auctionData) {
+			$auction = new Auction();
+			$auction->set($auctionData);
+			$this->auctions[$auction->id] = $auction;
+		}
 	}
-	function doSomething() {
-		$data = JSON_decode($this->rawData);
-		foreach($data["alliance"]["auctions"] as $auction) {
-			
+	function loadItems() {
+		// Should throw an exception if there are no auctions loaded.
+		if (count($this->auctions)) {
+			foreach($this->auctions as $auction) {
+				ItemCollection::getInstance()->fetchItem($auction->item->id);
+			}
+		} else {
+			throw new NoAuctionsLoaded();
 		}
 	}
 
@@ -43,5 +54,6 @@ class AuctionCollection {
 }
 
 class NoNewDataException extends Exception {}
+class NoAuctionsLoaded extends Exception {}
 
 ?>
