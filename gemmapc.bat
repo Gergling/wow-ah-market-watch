@@ -1,0 +1,1 @@
+C:\PHP\php.exe -f "felsteed-based-20130722\module\auction\bin\control\%0.php"

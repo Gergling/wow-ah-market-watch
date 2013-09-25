@@ -1,0 +1,1 @@
+//var AbstractQuantityCollection = Backbone.Collection.extend();

@@ -1,0 +1,25 @@
+{
+	"dependencies": [
+	],
+	"models": [
+		"Auction"
+	],
+	"collections": [
+		"AuctionCollection"
+	],
+	"views": [
+	],
+	"templates": [
+		"sometemplate"
+	],
+	"special": {
+		"preModule": [
+		],
+		"preModelView": [
+		],
+		"preCollectionTemplate": [
+		],
+		"postModule": [
+		]
+	}
+}
