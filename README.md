@@ -5,7 +5,10 @@ WoW AH Market Watch
 
 Requires actual code to be written.
 
-Features:
+Necessary Features:
+- Find items of the same type (e.g. cloth chest armour, one-handed swords) and similar required level, details of items, prices.
+
+Potential Features:
 - Observation of WoW item price trends over time (possibly requiring of some special long-term archiving).
 - Watched items to be presented in a dashboard. 
 - No login required (can of worms), all preferences stored in cookies.
