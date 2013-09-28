@@ -1,5 +1,7 @@
 <?php
 
+require_once("ItemFactory.php");
+
 /*
 
 {
@@ -28,29 +30,15 @@ class ItemCollection {
 			curl_close($this->curl);
 			
 			// Need an item factory - either outputs a weapon or armour. Maybe something else?
-			$item = new Item();
-			if (isset($itemdata["weaponInfo"])) {
-				$item = new Weapon();
-			}
-			if ($itemdata["baseArmor"]>0) {
-				$item = new Armour();
-			}
+			$item = ItemFactory::getInstance()->makeItem($itemData);
 
-			if ($item) {
-				$item->setData($itemData);
-				$this->addItem($item);
-			}
+			$item->setData($itemData);
+			$this->addItem($item);
 		}
 		return $this->items[$id];
 	}
-	function put() {
-		// Turns items variable into json and stores somewhere.
-	}
-	function load() {
-		// Retrieves local file of items.
-	}
 
-	function addItem($item) {
+	function addItem(Item $item) {
 		$this->items[$item->id] = &$item;
 		switch(class_name($item)) {
 			case "Armour": {

@@ -14,11 +14,13 @@ echo"- (".stamp().") Loading local auctions data...\n";
 
 $auctions->loadRaw();
 
-echo"- (".stamp().") Downloaded data.\n";
+echo"- (".stamp().") Loaded data.\n";
+
+$auctions->fetchItems();
 
 echo"- (".stamp().") Making local file...\n";
 
-$auctions->putRaw();
+$auctions->put();
 
 echo"- (".stamp().") Done.\n";
 
